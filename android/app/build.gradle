@@ -9,6 +9,7 @@ plugins {
 }
 
 android {
+    
     namespace = "com.example.petrolchik"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "25.1.8937393"
@@ -44,4 +45,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation "com.google.android.gms:play-services-location:21.1.0"
+    implementation "androidx.work:work-runtime:2.9.0"
 }

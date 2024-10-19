@@ -15,7 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   #mapping and location
-  yandex_mapkit: ^4.1.0
+  yandex_maps_mapkit: 4.7.2-beta6
   geolocator: ^13.0.1
   latlong2: ^0.9.1
   permission_handler: ^11.3.1

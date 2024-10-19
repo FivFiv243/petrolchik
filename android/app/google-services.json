@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "480522145713",
+    "firebase_url": "https://petrolcounter-34bab-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "petrolcounter-34bab",
+    "storage_bucket": "petrolcounter-34bab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480522145713:android:78d8a62337622a0dfb7790",
+        "android_client_info": {
+          "package_name": "com.example.petrol_counter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKHRBw0rDVK8ybbpHjeyNBbkqXcDfrxu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480522145713:android:03558ef588a848dcfb7790",
+        "android_client_info": {
+          "package_name": "com.example.petrolchik"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKHRBw0rDVK8ybbpHjeyNBbkqXcDfrxu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

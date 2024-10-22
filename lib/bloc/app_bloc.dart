@@ -27,5 +27,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     // on<CheckEvent>((event, emit) {
     //   emit(CheckState());
     // });
+    on<ToSettingsEvent>((event, emit) {
+      emit(SettingState());
+    });
   }
 }

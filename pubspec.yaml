@@ -66,4 +66,5 @@ flutter:
   assets:
   - .env.prod
   - assets/Lottie/Animation_auth.json
+  - assets/image_asset/pngwing.png
 

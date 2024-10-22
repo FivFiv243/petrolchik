@@ -41,3 +41,8 @@ class CheckEvent extends AppEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ToSettingsEvent extends AppEvent {
+  @override
+  List<Object?> get props => [];
+}

@@ -28,3 +28,8 @@ class CheckState extends AppState {
   @override
   List<Object?> get props => [];
 }
+
+class SettingState extends AppState {
+  @override
+  List<Object?> get props => [];
+}

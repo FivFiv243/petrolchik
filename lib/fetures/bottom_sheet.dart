@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:pretty_animated_buttons/pretty_animated_buttons.dart';
-import 'package:pretty_animated_buttons/widgets/pretty_neumorphic_button.dart';
 import 'package:pretty_animated_buttons/widgets/pretty_slide_up_button.dart';
+import 'package:yandex_maps_mapkit/src/mapkit/map/map_window.dart';
+
+import '../map_activity/map_funcs_and_things.dart';
 
 final _searchSessionStart = TextEditingController();
 final _searchSessionEnd = TextEditingController();
 bool toggleType = true;
 
 class BottomSheetCustom extends StatefulWidget {
-  const BottomSheetCustom({super.key});
-
+  const BottomSheetCustom({super.key, required this.mapWindow});
+  final MapWindow? mapWindow;
   @override
   State<BottomSheetCustom> createState() => _BottomSheetCustomState();
 }
@@ -127,7 +129,10 @@ class _BottomSheetCustomState extends State<BottomSheetCustom> {
                               "Построить",
                               style: TextStyle(color: Colors.white),
                             ),
-                            onPressed: () {})
+                            onPressed: () {
+                              YanMapAct(mapWindow: widget.mapWindow).searchAddressAndAddPlacemark(_searchSessionEnd.text.trim(), widget.mapWindow, context);
+                              //widget.mapWindow?.map.mapObjects.;
+                            })
                       ],
                     )
                   ],

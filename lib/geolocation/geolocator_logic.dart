@@ -25,6 +25,12 @@ class GeoLogic {
     return await Geolocator.getCurrentPosition();
   }
 
+  Future<Position?> GeoGetter() async {
+    try {
+      return await Geolocator.getCurrentPosition();
+    } catch (e) {}
+  }
+
   //location settings
   final LocationSettings locationSettings = LocationSettings(
     accuracy: LocationAccuracy.high,

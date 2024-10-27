@@ -1,15 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:petrolchik/bloc/app_bloc.dart';
+import 'package:petrolchik/camera_manager/camer_manager.dart';
 import 'package:petrolchik/fetures/bottom_sheet.dart';
-import 'package:petrolchik/geolocator_act.dart/geolocator_logic.dart';
 import 'package:petrolchik/screens/settings_screen.dart';
 import 'package:yandex_maps_mapkit/mapkit.dart';
 import 'package:yandex_maps_mapkit/mapkit_factory.dart';
-import 'package:yandex_maps_mapkit/src/bindings/image/image_provider.dart' as ip;
 import 'package:yandex_maps_mapkit/yandex_map.dart';
 
 class AppScreen extends StatefulWidget {
@@ -21,14 +18,16 @@ class AppScreen extends StatefulWidget {
 
 final _AppBloc = AppBloc();
 MapWindow? _mapWindow;
-late AnimationController _controller;
 var bottom_sheet = 0.0;
-bool check = false;
-//Text editing controllers
-final _searchAddres = TextEditingController();
-Position? _position;
+//map things
 
-class _AppScreenState extends State<AppScreen> with TickerProviderStateMixin {
+late final _locationManager = mapkit.createLocationManager();
+late final UserLocationLayer _userLocationLayer;
+late final CameraManager _cameraManager;
+final _searchAddres = TextEditingController();
+late final Position _GeoView;
+
+class _AppScreenState extends State<AppScreen> implements UserLocationObjectListener {
   @override
   void initState() {
     super.initState();
@@ -36,7 +35,6 @@ class _AppScreenState extends State<AppScreen> with TickerProviderStateMixin {
 
   Widget build(BuildContext context) {
     final QueryWidth = MediaQuery.of(context).size.width;
-    final QueryHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -65,27 +63,37 @@ class _AppScreenState extends State<AppScreen> with TickerProviderStateMixin {
               return Stack(children: [
                 YandexMap(onMapCreated: (mapwindow) {
                   mapkit.onStart();
-                  _mapWindow = mapwindow;
-                  if (check == false) {
-                    StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: GeoLogic().locationSettings).listen((Position? position) {
-                      setState(() {
-                        _position = position;
-                      });
-                      final placemark = mapwindow.map.mapObjects.addPlacemark()
-                        ..geometry = Point(latitude: _position!.latitude, longitude: _position!.longitude)
-                        ..setIcon(ip.ImageProvider.fromImageProvider(AssetImage("assets/image_asset/pngwing.png")));
-                      _mapWindow?.map.move(CameraPosition(Point(latitude: _position!.latitude, longitude: _position!.longitude), zoom: 0, azimuth: 0, tilt: 0));
-                      print(position == null ? '\n\nStream Pos Unknown\n\n' : '\n\n' + '${position.latitude.toString()}, ${position.longitude.toString()}' + '\n\n');
-                      print(_position == null ? '\n\nUser Unknown\n\n' : '\n\n' + '${_position!.latitude.toString()}, ${_position!.longitude.toString()}' + '\n\n');
-                      check = true;
-                    });
-                  }
-                  mapwindow.map.move(CameraPosition(Point(latitude: 21, longitude: 22.084), zoom: 0, azimuth: 0, tilt: 0));
+                  setState(() {
+                    _mapWindow = mapwindow;
+                  });
+                  _userLocationLayer = mapkit.createUserLocationLayer(mapwindow)
+                    ..headingEnabled
+                    ..setVisible(true)
+                    ..setObjectListener(this);
+
+                  _cameraManager = CameraManager(mapwindow, _locationManager)..start();
                 }),
-                BottomSheetCustom()
+                BottomSheetCustom(
+                  mapWindow: _mapWindow,
+                )
               ]);
             }
           }),
     );
+  }
+
+  @override
+  void onObjectAdded(UserLocationView view) {
+    // TODO: implement onObjectAdded
+  }
+
+  @override
+  void onObjectRemoved(UserLocationView view) {
+    // TODO: implement onObjectRemoved
+  }
+
+  @override
+  void onObjectUpdated(UserLocationView view, ObjectEvent event) {
+    // TODO: implement onObjectUpdated
   }
 }

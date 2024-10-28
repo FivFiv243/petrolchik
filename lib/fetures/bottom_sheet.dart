@@ -19,6 +19,7 @@ class BottomSheetCustom extends StatefulWidget {
 class _BottomSheetCustomState extends State<BottomSheetCustom> {
   @override
   Widget build(BuildContext context) {
+    final mapFuncs = YanMapAct(mapWindow: widget.mapWindow, changer: true);
     final QueryWidth = MediaQuery.of(context).size.width;
     final QueryHeight = MediaQuery.of(context).size.height;
     return DraggableScrollableSheet(
@@ -130,7 +131,7 @@ class _BottomSheetCustomState extends State<BottomSheetCustom> {
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
-                              YanMapAct(mapWindow: widget.mapWindow).searchAddressAndAddPlacemark(_searchSessionEnd.text.trim(), widget.mapWindow, context);
+                              mapFuncs.searchAddressAndAddPlacemark(_searchSessionEnd.text.trim(), widget.mapWindow, context);
                               //widget.mapWindow?.map.mapObjects.;
                             })
                       ],

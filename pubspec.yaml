@@ -70,4 +70,6 @@ flutter:
   - .env.prod
   - assets/Lottie/Animation_auth.json
   - assets/image_asset/clipart3004129.png
-
+  - assets/image_asset/pin_red.png
+  - assets/image_asset/2.0x/pin_red.png
+  - assets/image_asset/3.0x/pin_red.png

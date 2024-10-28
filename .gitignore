@@ -44,3 +44,4 @@ app.*.map.json
 
 # api key's
 .env.prod
+/lib/firebase/firebase_options.dart

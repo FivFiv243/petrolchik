@@ -41,7 +41,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBe6K3_m3fqMvILOlO-od2ooWUrZ3gQgQQ',
+    apiKey: 'apikey',
     appId: '1:480522145713:web:9018f958c1d2cb29fb7790',
     messagingSenderId: '480522145713',
     projectId: 'petrolcounter-34bab',
@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCKHRBw0rDVK8ybbpHjeyNBbkqXcDfrxu0',
+    apiKey: 'apikey',
     appId: '1:480522145713:android:03558ef588a848dcfb7790',
     messagingSenderId: '480522145713',
     projectId: 'petrolcounter-34bab',
@@ -61,7 +61,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDUktSmwiyZQm0HkgKH9CM6YUsl750AXR0',
+    apiKey: 'apikey',
     appId: '1:480522145713:ios:8026bebcd86a2e6ffb7790',
     messagingSenderId: '480522145713',
     projectId: 'petrolcounter-34bab',
@@ -71,7 +71,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDUktSmwiyZQm0HkgKH9CM6YUsl750AXR0',
+    apiKey: 'apikey',
     appId: '1:480522145713:ios:8026bebcd86a2e6ffb7790',
     messagingSenderId: '480522145713',
     projectId: 'petrolcounter-34bab',
@@ -81,7 +81,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBe6K3_m3fqMvILOlO-od2ooWUrZ3gQgQQ',
+    apiKey: 'apikey',
     appId: '1:480522145713:web:412e2b739d10900efb7790',
     messagingSenderId: '480522145713',
     projectId: 'petrolcounter-34bab',

@@ -13,6 +13,7 @@ void main() async {
   GeoLogic().determinePosition();
 
   await Firebase.initializeApp(
+    name: "main_project",
     options: DefaultFirebaseOptions.currentPlatform,
   );
 

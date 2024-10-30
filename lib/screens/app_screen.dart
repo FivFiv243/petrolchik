@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:petrolchik/bloc/app_bloc.dart';
 import 'package:petrolchik/camera_manager/camer_manager.dart';
 import 'package:petrolchik/fetures/bottom_sheet.dart';
+import 'package:petrolchik/map_activity/map_funcs_and_things.dart';
 import 'package:petrolchik/screens/settings_screen.dart';
 import 'package:yandex_maps_mapkit/mapkit.dart';
 import 'package:yandex_maps_mapkit/mapkit_factory.dart';
@@ -26,6 +27,7 @@ late final UserLocationLayer _userLocationLayer;
 late final CameraManager _cameraManager;
 final _searchAddres = TextEditingController();
 late final Position _GeoView;
+late final mapFuncs;
 
 class _AppScreenState extends State<AppScreen> implements UserLocationObjectListener {
   @override
@@ -48,13 +50,17 @@ class _AppScreenState extends State<AppScreen> implements UserLocationObjectList
         actions: [
           Padding(padding: EdgeInsets.fromLTRB(QueryWidth / 100, 0, 0, 0)),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              mapFuncs.searchAddressAndAddPlacemark(_searchAddres.text.trim(), _mapWindow, context);
+            },
             child: Icon(Icons.search),
           ),
           Padding(padding: EdgeInsets.fromLTRB(QueryWidth / 40, 0, 0, 0)),
         ],
         centerTitle: true,
-        title: TextField(),
+        title: TextField(
+          controller: _searchAddres,
+        ),
       ),
       body: BlocBuilder(
           bloc: _AppBloc,
@@ -65,12 +71,12 @@ class _AppScreenState extends State<AppScreen> implements UserLocationObjectList
                   mapkit.onStart();
                   setState(() {
                     _mapWindow = mapwindow;
+                    mapFuncs = YanMapAct(mapWindow: _mapWindow, searchChanger: true, changer: false, pointList: []);
                   });
                   _userLocationLayer = mapkit.createUserLocationLayer(mapwindow)
                     ..headingEnabled
                     ..setVisible(true)
                     ..setObjectListener(this);
-
                   _cameraManager = CameraManager(mapwindow, _locationManager)..start();
                 }),
                 BottomSheetCustom(

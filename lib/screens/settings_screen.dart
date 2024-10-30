@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petrolchik/firebase/firebase_auth.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,7 +15,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(),
       body: SafeArea(
           child: Center(
-        child: Text("qweqwe"),
+        child: TextButton(
+            onPressed: () {
+              FireAuth().SignOutAcc();
+            },
+            child: Text("Sign out")),
       )),
     );
   }

@@ -71,7 +71,7 @@ class _AppScreenState extends State<AppScreen> implements UserLocationObjectList
                   mapkit.onStart();
                   setState(() {
                     _mapWindow = mapwindow;
-                    mapFuncs = YanMapAct(mapWindow: _mapWindow, searchChanger: true, changer: false, pointList: []);
+                    mapFuncs = YanMapAct(mapWindow: _mapWindow, searchChanger: true, changer: false, pointList: [], context: context);
                   });
                   _userLocationLayer = mapkit.createUserLocationLayer(mapwindow)
                     ..headingEnabled

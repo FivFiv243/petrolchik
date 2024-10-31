@@ -46,6 +46,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   retrofit: ^4.4.1
   json_annotation: ^4.9.0
+  collection: ^1.18.0
 
 dev_dependencies:
   #retrofit dep

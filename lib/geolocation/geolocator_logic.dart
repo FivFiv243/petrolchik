@@ -29,6 +29,7 @@ class GeoLogic {
     try {
       return await Geolocator.getCurrentPosition();
     } catch (e) {}
+    return null;
   }
 
   //location settings

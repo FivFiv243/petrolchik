@@ -7,6 +7,7 @@ import '../map_activity/map_funcs_and_things.dart';
 
 final _searchSessionStart = TextEditingController();
 final _searchSessionEnd = TextEditingController();
+final _Excontoller = TextEditingController();
 bool toggleType = true;
 
 class BottomSheetCustom extends StatefulWidget {
@@ -19,7 +20,7 @@ class BottomSheetCustom extends StatefulWidget {
 class _BottomSheetCustomState extends State<BottomSheetCustom> {
   @override
   Widget build(BuildContext context) {
-    final mapFuncs = YanMapAct(mapWindow: widget.mapWindow, searchChanger: toggleType, changer: true, pointList: []);
+    final mapFuncs = YanMapAct(mapWindow: widget.mapWindow, searchChanger: toggleType, changer: true, pointList: [], context: context);
     final QueryWidth = MediaQuery.of(context).size.width;
     final QueryHeight = MediaQuery.of(context).size.height;
     return DraggableScrollableSheet(
@@ -89,6 +90,22 @@ class _BottomSheetCustomState extends State<BottomSheetCustom> {
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(),
                           hoverColor: Colors.black,
+                          labelText: 'Расход лит/100км',
+                          labelStyle: TextStyle(color: Colors.black87),
+                          border: UnderlineInputBorder(),
+                          disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: BorderSide(color: Colors.grey, width: 1, style: BorderStyle.solid)),
+                        ),
+                        controller: _Excontoller,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Container(
+                      margin: EdgeInsets.fromLTRB((QueryWidth / 10) / 2, 0, (QueryWidth / 10) / 2, 0),
+                      child: TextField(
+                        maxLength: 128,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(),
+                          hoverColor: Colors.black,
                           labelText: 'конечный адресс',
                           labelStyle: TextStyle(color: Colors.black87),
                           border: UnderlineInputBorder(),
@@ -133,10 +150,19 @@ class _BottomSheetCustomState extends State<BottomSheetCustom> {
                             ),
                             onPressed: () {
                               widget.mapWindow!.map.mapObjects.clear();
+                              double ex;
+                              try {
+                                ex = double.parse(_Excontoller.text);
+                              } catch (e) {
+                                ex = 0.0;
+                              }
                               if (toggleType == false) {
+                                mapFuncs.setEx(ex);
                                 mapFuncs.searchAddressAndAddPlacemark(_searchSessionEnd.text.trim(), widget.mapWindow, context);
                                 mapFuncs.searchAddressAndAddPlacemark(_searchSessionStart.text.trim(), widget.mapWindow, context);
                               } else {
+                                mapFuncs.setEx(ex);
+                                mapFuncs.geomyloc();
                                 mapFuncs.searchAddressAndAddPlacemark(_searchSessionEnd.text.trim(), widget.mapWindow, context);
                               }
                             })
